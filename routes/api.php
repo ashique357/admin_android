@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Service;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,8 +17,32 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/services', function() {
-    // If the Content-Type and Accept headers are set to 'application/json',
-    // this will return a JSON structure. This will be cleaned up later.
-    return Service::all();
-});
+//-------------------Service API----------------------------//
+
+Route::get('/services','API\ServiceController@index');
+Route::get('/services/{service}','API\ServiceController@show');
+Route::post('/services','API\ServiceController@store');
+Route::put('/services/{service}','API\ServiceController@update');
+Route::get('/services/{service}','API\ServiceController@delete');
+
+
+
+//-------------------Shop API----------------------------//
+
+Route::get('/shops','API\ShopController@index');
+Route::get('/shops/{shop}','API\ShopController@show');
+Route::post('/shops','API\ShopController@store');
+Route::put('/shops/{shop}','API\ShopController@update');
+Route::get('/shops/{shop}','API\ShopController@delete');
+
+
+//-------------------Product API----------------------------//
+
+Route::get('/products','API\ProductController@index');
+Route::get('/products/{product}','API\ProductController@show');
+Route::post('/products','API\ProductController@store');
+Route::put('/products/{product}','API\ProductController@update');
+Route::get('/products/{product}','API\ProductController@delete');
+
+
+Route::get('/orders','API\OrderController@index');

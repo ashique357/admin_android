@@ -1,19 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('layouts.master');
-});
 
 //------------------Services------------------//
 Route::get('/add-service','ServiceController@add_service');
@@ -26,8 +12,6 @@ Route::post('/edit/service/{id}','ServiceController@update_service');
 
 Route::get('/delete/service/{id}','ServiceController@delete');
 
-//Route::get('/top/service/{id}','ServiceController@make_top');
-//Route::get('/cancel/service/{id}','ServiceController@cancel_top');
 
 Route::get('/new/service/{id}','ServiceController@make_new');
 Route::get('/cancel/new-service/{id}','ServiceController@cancel_new');
@@ -38,7 +22,6 @@ Route::get('/cancel/new-service/{id}','ServiceController@cancel_new');
 Route::get('/add-shop','ShopController@add_shop');
 Route::post('/add-shop','ShopController@post_add_shop');
 
-Route::get('/all-shops','ShopController@shop_list');
 
 Route::get('/edit/shop/{id}','ShopController@edit');
 Route::post('/edit/shop/{id}','ShopController@update');
@@ -54,10 +37,31 @@ Route::get('/delete/shop/{id}','ShopController@delete');
 Route::get('/add-product','ProductController@add_product');
 Route::post('/add-product','ProductController@post_add_product');
 
-Route::get('/all-products','ProductController@product_list');
+
 
 Route::get('/edit/product/{id}','ProductController@edit');
 Route::post('/edit/product/{id}','ProductController@update');
 
 Route::get('/delete/product/{id}','ProductController@delete');
-// Route::get('/product/{id}','Produ`Controller@product_show');
+
+Route::get('/top/product/{id}','ProductController@make_top');
+Route::get('/cancel/product/{id}','ProductController@cancel_top');
+
+
+
+
+Route::get('/show-shop/{id}','ServiceController@show_shops');
+Route::get('/show-product/{id}','ShopController@show_products');
+Route::get('/product/{id}','ProductController@product_item');
+
+
+
+
+//------------------Advertise-----------------------//
+
+Route::get('/add-advertise','AdvertiseController@add');
+Route::post('/add-advertise','AdvertiseController@store');
+
+Route::get('/cancel/advertise/{id}','AdvertiseController@change_status_0');
+Route::get('/add/advertise/{id}','AdvertiseController@change_status_1');
+Route::get('/all-advertises','AdvertiseController@show');

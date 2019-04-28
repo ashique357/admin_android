@@ -22,33 +22,52 @@
 @endif
 
 <div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-block">
+          <a href="/add-product"><button type="button" class="btn btn-primary btn-lg" name="button" style="float:right;">Add Product</button></a>
+          <a href="javascript:history.back()"><button type="button" class="btn btn-primary btn-lg" name="button" onclick="goBack()" style="float:left;">Go Back</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
   @foreach($products as $product)
-  <div class="col-lg-4">
+  <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
       <div class="card">
-          <div class="card-body">
-              <div class="card-two">
-                  <header>
-                      <div class="avatar">
-                          <img src="{{asset("images/$product->image1")}}" alt="">
-                          <img src="{{asset("images/$product->image2")}}" alt="">
-                      </div>
-                  </header>
-                  <h3>{{$product->header}}</h3>
-                  <p>{{$product->price}}</p>
-                  <p>{{$product->discount_price}}</p>
-                  <p>{{$product->description}}</p>
-                  <div class="text-center">
-                    <a href="/edit/product/{{$product->id}}">
-                    <button type="button" name="button" class="btn btn-primary btn-success">Edit</button>
-                    </a>
-                    <a href="/delete/product/{{$product->id}}">
-                    <button type="button" name="button" class="btn btn-primary btn-danger">Delete</button>
-                    </a>
-                  </div>
-              </div>
+        <a href="/product/{{$product->id}}">
+          <img class="card-img-top" src="{{asset("images/$product->image1")}}">
+          <div class="card-block">
+            <h3>{{$product->header}}</h3> <strong></strong>
+            <p><strong>Price:</strong>{{$product->price}}</p>
+            @if($product->discount_price > 0)
+            <p><strong>Discount Price:</strong>{{$product->discount_price}}</p>
+            @endif
+            <div class="card-size">
+              <p><strong>Description:</strong>{{$product->description}}</p>
+            </div>
+          </div>
+          <div class="btn-group-justified text-center">
+            <a href="/edit/product/{{$product->id}}">
+            <button type="button" name="button" class="btn btn-sm btn-success" style="margin-bottom:5px;">Edit</button>
+            </a>
+            <a href="/delete/product/{{$product->id}}">
+            <button type="button" name="button" class="btn btn-sm btn-danger" style="margin-bottom:5px;">Delete</button>
+            </a>
+              @if($product->top == 0)
+              <a href="/top/product/{{$product->id}}">
+                  <button type="button" name="button" class="btn btn-sm btn-info" style="margin-bottom:5px;">Make Top</button>
+              </a>
+              @else
+              <a href="/cancel/top-product/{{$product->id}}">
+                  <button type="button" name="button" class="btn btn-sm btn-dark" style="margin-bottom:5px;">Cancel Top</button>
+              </a>
+              @endif
           </div>
       </div>
   </div>
+
   @endforeach
 </div>
 

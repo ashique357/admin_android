@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Service;
 use App\Shop;
+use App\Product;
 
 class ShopController extends Controller
 {
@@ -36,10 +37,10 @@ class ShopController extends Controller
     return back()->with('success','Successfully Saved');
   }
 
-  public function shop_list(){
-      $shops=Shop::orderBy('service_id','DESC')->get();
-      return view('pages.Shops.ShopList')->with(['shops'=>$shops]);
-  }
+  // public function shop_list(){
+  //     $shops=Shop::orderBy('service_id','DESC')->get();
+  //     return view('pages.Shops.ShopList')->with(['shops'=>$shops]);
+  // }
 
   public function edit($id){
     $shop=Shop::findOrFail($id)->first();
@@ -63,7 +64,6 @@ class ShopController extends Controller
         $imageName1=$u->image1;
       }
 
-
     $u->name=$request->name;
     $u->description=$request->description;
     $u->image1=$imageName1;
@@ -76,12 +76,13 @@ class ShopController extends Controller
 
   public function delete($id){
     $d=Shop::find($id);
+    Product::where('shop_id','=',$id)->delete();
     $d->delete();
     return back()->with('success','Successfully Deleted');
   }
 
-  // public function product_show($id){
-  //   $shop=Shop::findOrFail($id)->first();
-  //   return view('pages.Shops.Product')->with(['shop'=>$shop]);
-  // }
+  public function show_products($id){
+    $products=Product::where('shop_id','=',$id)->get();
+    return view('pages.Products.ProductList')->with(['products'=>$products]);
+  }
 }

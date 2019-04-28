@@ -22,39 +22,46 @@
 @endif
 
 <div class="row">
-  @foreach($services as $service)
-  <div class="col-lg-4">
-      <div class="card">
-          <div class="card-body">
-              <div class="card-two">
-                  <header>
-                      <div class="avatar">
-                          <img src="{{asset("images/$service->thumbnail")}}" alt="">
-                      </div>
-                  </header>
-                  <h3>{{$service->title}}</h3>
-                  <div class=".btn-group text-align-center">
-
-                    <a href="/edit/service/{{$service->id}}">
-                    <button type="button" name="button" class="btn btn-primary btn-success">Edit</button>
-                    </a>
-
-                    <a href="/delete/service/{{$service->id}}" class="delete">
-                    <button type="button" name="button" class="btn btn-primary btn-danger">Delete</button>
-                    </a>
-
-                    <a href="/new/service/{{$service->id}}">
-                    <button type="button" name="button" class="btn btn-primary btn-success">Mark as New Service</button>
-                    </a>
-
-                    <a href="/cancel/new-service/{{$service->id}}">
-                    <button type="button" name="button" class="btn btn-primary">Cancel New Service</button>
-                    </a>
-                  </div>
-              </div>
-          </div>
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-block">
+          <a href="/add-service"><button type="button" class="btn btn-primary btn-lg" name="button" style="float:right;">Add Service</button></a>
+        <!--  <a href="javascript:history.back()"><button type="button" class="btn btn-primary btn-lg" name="button" onclick="goBack()" style="float:left;">Go Back</button></a>
+-->
       </div>
+    </div>
   </div>
+</div>
+
+<div class="row">
+  @foreach($services as $service)
+<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+    <div class="card">
+      <a href="/show-shop/{{$service->id}}">
+        <img class="card-img-top" src="{{asset("images/$service->thumbnail")}}"></a>
+        <div class="card-block">
+            <h5 class="text-bold text-center">{{$service->title}}</h5>
+        </div>
+        <div class="btn-group-justified text-center">
+            <a href="/edit/service/{{$service->id}}">
+                <button type="button" name="button" class="btn btn-sm btn-success" style="margin-bottom:5px;">Edit  Service</button>
+            </a>
+
+            <a href="/delete/service/{{$service->id}}" class="delete">
+                <button type="button" name="button" class="btn btn-sm btn-danger" style="margin-bottom:5px;">Delete Service</button>
+            </a>
+            @if($service->new == 0)
+            <a href="/new/service/{{$service->id}}">
+                <button type="button" name="button" class="btn btn-sm btn-info">Make New</button>
+            </a>
+            @else
+            <a href="/cancel/new-service/{{$service->id}}">
+                <button type="button" name="button" class="btn btn-sm btn-dark">Cancel New</button>
+            </a>
+            @endif
+        </div>
+    </div>
+</div>
   @endforeach
 </div>
 

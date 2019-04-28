@@ -7,8 +7,8 @@
     <div class="col-md-7 align-self-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-            <li class="breadcrumb-item active">Services</li>
-            <li class="breadcrumb-item active">Add Services</li>
+            <li class="breadcrumb-item active">Advertise</li>
+            <li class="breadcrumb-item active">Add Advertise</li>
         </ol>
     </div>
 </div>
@@ -35,24 +35,15 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-validation">
-                        <form class="form-valide" action="/add-service" method="post" enctype="multipart/form-data">
+                        <form class="form-valide" action="/add-advertise" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="">Add Service Title</label>
-                                <div class="input-group input-group-flat col-lg-6">
-                                    <input id="" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus> @if ($errors->has('title'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span> @endif
-                                </div>
-                            </div>
 
                             <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="val-username">Add Thumbnail</label>
+                                <label class="col-lg-4 col-form-label" for="val-username">Add Advertise</label>
                                 <div class="input-group input-group-flat col-lg-6">
-                                    <input id="" type="file" class="form-control{{ $errors->has('thumbnail') ? ' is-invalid' : '' }}" name="thumbnail" value="{{ old('thumbnail') }}" required autofocus> @if ($errors->has('thumbnail'))
+                                    <input id="" type="file" class="form-control{{ $errors->has('advertise') ? ' is-invalid' : '' }}" name="advertise" value="{{ old('advertise') }}" required autofocus> @if ($errors->has('advertise'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('thumbnail') }}</strong>
+                                        <strong>{{ $errors->first('advertise') }}</strong>
                                     </span> @endif
                                 </div>
                             </div>

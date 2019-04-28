@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Service;
-use App\Category;
-use Illuminate\Support\Facades\Input;
+use App\Shop;
+use App\Product;
+
 
 class ServiceController extends Controller
 {
@@ -66,25 +67,14 @@ class ServiceController extends Controller
 
     public function delete($id){
       $d=Service::find($id);
-      Category::where('service_id','=',$id)->delete();
+      $shops=Shop::where('service_id','=',$id)->get();
+      foreach ($shops as $shop) {
+        $product=Product::where('shop_id','=',$shop->id)->delete();
+        $shop->delete();
+      }
+
       $d->delete();
       return back()->with('success','Successfully Deleted');
-    }
-
-    public function make_top($id){
-        $j=Service::findOrFail($id);
-        $j->top=1;
-        $j->save();
-
-        return back()->with('success','Successfully Make as Top Service');
-    }
-
-    public function cancel_top($id){
-        $j=Service::findOrFail($id);
-        $j->top=0;
-        $j->save();
-
-        return back()->with('success','Successfully Cancelled as Top Service');
     }
 
     public function make_new($id){
@@ -101,5 +91,10 @@ class ServiceController extends Controller
         $j->save();
 
         return back()->with('success','Successfully Cancelled as New Service');
+    }
+
+    public function show_shops($id){
+      $shops=Shop::where('service_id','=',$id)->get();
+      return view('pages.Shops.ShopList')->with(['shops'=>$shops]);
     }
 }

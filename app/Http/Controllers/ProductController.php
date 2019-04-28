@@ -100,4 +100,24 @@ class ProductController extends Controller
     return view('pages.Products.Product')->with(['product'=>$product]);
   }
 
+  public function make_top($id){
+      $j=Product::findOrFail($id);
+      $j->top=1;
+      $j->save();
+
+      return back()->with('success','Successfully Make as Top Service');
+  }
+
+  public function cancel_top($id){
+      $j=Product::findOrFail($id);
+      $j->top=0;
+      $j->save();
+
+      return back()->with('success','Successfully Cancelled as Top Service');
+  }
+
+  public function product_item($id){
+    $product=Product::find($id)->first();
+    return view('pages.Products.ProductItem')->with(['product'=>$product]);
+  }
 }

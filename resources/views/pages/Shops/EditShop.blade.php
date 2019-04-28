@@ -21,6 +21,16 @@
 </div>
 @endif
 
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="card">
+      <div class="card-block">
+          <a href="javascript:history.back()"><button type="button" class="btn btn-primary btn-lg" name="button" onclick="goBack()" style="float:left;">Go Back</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-lg-12">
